@@ -22,7 +22,7 @@
   },
   "include": [
     "src"
-  ],
+, "pages/history", "pages/home"  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
