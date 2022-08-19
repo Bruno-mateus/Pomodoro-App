@@ -1,4 +1,4 @@
-import { Play } from 'phosphor-react'
+import { HandPalm, Play } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { differenceInSeconds } from 'date-fns'
 import {
   ButtonStart,
+  ButtonStop,
   CountdownContainer,
   FormContainer,
   HomeContainer,
@@ -28,6 +29,7 @@ interface Cycle {
   task: string
   minutesAmount: number
   startDate: Date
+  interruptCycle?: Date
 }
 
 export function Home() {
@@ -62,7 +64,21 @@ export function Home() {
 
     reset()
   }
+  function handleInterruptCycle() {
+    setCycles(
+      cycles.map((cycle) => {
+        if (cycle.id === activeCycleId) {
+          cycle.interruptCycle = new Date()
+          return { ...cycle }
+        } else {
+          return cycle
+        }
+      }),
+    )
+    SetActiveCycleId(null)
+  }
 
+  console.log(cycles)
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
   useEffect(() => {
@@ -105,6 +121,7 @@ export function Home() {
             id="task"
             placeholder="nome para o seu projeto"
             list="task-suggestion"
+            disabled={!!activeCycle}
             {...register('task')}
           />
           <datalist id="task-suggestion">
@@ -119,6 +136,7 @@ export function Home() {
             step={5}
             max={60}
             id="minutesAmount"
+            disabled={!!activeCycle}
             {...register('minutesAmount', { valueAsNumber: true })}
           />
           <span>minutos.</span>
@@ -130,10 +148,17 @@ export function Home() {
           <span>{seconds[0]}</span>
           <span>{seconds[1]}</span>
         </CountdownContainer>
-        <ButtonStart disabled={isSubmitDisable} type="submit">
-          <Play />
-          Começar
-        </ButtonStart>
+        {activeCycle ? (
+          <ButtonStop onClick={handleInterruptCycle} type="submit">
+            <HandPalm size={24} />
+            Interromper
+          </ButtonStop>
+        ) : (
+          <ButtonStart disabled={isSubmitDisable} type="submit">
+            <Play size={24} />
+            Começar
+          </ButtonStart>
+        )}
       </form>
     </HomeContainer>
   )

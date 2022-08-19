@@ -48,7 +48,7 @@ export const Separator = styled.div`
   width: 4rem;
   overflow: hidden;
 `
-export const ButtonStart = styled.button`
+export const BaseButtonCountDown = styled.button`
   width: 100%;
   padding: 1rem;
   display: flex;
@@ -58,10 +58,7 @@ export const ButtonStart = styled.button`
   cursor: pointer;
   border: none;
   color: ${({ theme }) => theme['gray-100']};
-  background-color: ${({ theme }) => theme['green-500']};
-  &:not[disabled]:hover {
-    background-color: ${({ theme }) => theme['green-700']};
-  }
+
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -97,4 +94,17 @@ export const TaskInput = styled(BaseInput)`
 `
 export const MinutesAmount = styled(BaseInput)`
   width: 4rem;
+`
+
+export const ButtonStart = styled(BaseButtonCountDown)`
+  background-color: ${({ theme }) => theme['green-500']};
+  &:not(disabled):hover {
+    background-color: ${({ theme }) => theme['green-700']};
+  }
+`
+export const ButtonStop = styled(BaseButtonCountDown)`
+  background-color: ${({ theme }) => theme['red-500']};
+  &:hover {
+    background-color: ${({ theme }) => theme['red-700']};
+  }
 `
