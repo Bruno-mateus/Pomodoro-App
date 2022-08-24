@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalStyles } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 import { Router } from './Router'
+import { Home } from './Home'
 
 function App() {
   return (
