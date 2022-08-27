@@ -23,6 +23,7 @@ interface ICyclesContext {
   markCurrentCycleAsFinished: () => void
   createNewCycle: ({ task, minutesAmount }: CreateCycleData) => void
   InterruptCurrentCycle: () => void
+  cycles: Cycle[]
 }
 
 interface Children {
@@ -59,6 +60,7 @@ export function CyclesContextProvider({ children }: Children) {
       state.map((cycle) => {
         if (cycle.id === activeCycleId) {
           cycle.interruptCycle = new Date()
+
           return { ...cycle }
         } else {
           return cycle
@@ -78,6 +80,7 @@ export function CyclesContextProvider({ children }: Children) {
         }
       })
     })
+    setActiveCycleId(null)
   }
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
@@ -92,6 +95,7 @@ export function CyclesContextProvider({ children }: Children) {
         setSecondsPassed,
         createNewCycle,
         InterruptCurrentCycle,
+        cycles,
       }}
     >
       {children}

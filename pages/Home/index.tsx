@@ -50,7 +50,7 @@ export function Home() {
         </FormProvider>
         <Countdown />
 
-        {activeCycle ? (
+        {activeCycle && !activeCycle.finishedDate ? (
           <ButtonStop onClick={InterruptCurrentCycle} type="submit">
             <HandPalm size={24} />
             Interromper
