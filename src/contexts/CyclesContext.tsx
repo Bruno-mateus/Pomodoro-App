@@ -2,8 +2,8 @@ import { createContext, ReactNode, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 interface CreateCycleData {
-  task: string
-  minutesAmount: number
+  task?: string
+  minutesAmount?: number
 }
 
 interface Cycle {
@@ -48,8 +48,6 @@ export function CyclesContextProvider({ children }: Children) {
     setActiveCycleId(newCycle.id)
 
     setAmountSecondsPassed(0)
-
-    // reset()
   }
 
   function setSecondsPassed(number: number) {
