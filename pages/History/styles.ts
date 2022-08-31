@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const HistoryContainer = styled.main`
   display: flex;
   flex-direction: column;
-  padding: 3.5rem;
-
+  padding: 3.5rem 0;
+  width: 100%;
   h1 {
     font-size: 1.5rem;
     color: ${({ theme }) => theme['gray-100']};

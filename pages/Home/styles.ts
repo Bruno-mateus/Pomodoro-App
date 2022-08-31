@@ -6,7 +6,6 @@ export const HomeContainer = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   form {
     display: flex;
     flex-direction: column;
@@ -29,6 +28,9 @@ export const BaseButtonCountDown = styled.button`
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+  }
+  @media (max-width: 600px) {
+    width: 50%;
   }
 `
 
