@@ -9,7 +9,7 @@ export const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme['gray-800']};
-  @media (max-width: 600) {
+  @media (max-width: 700px) {
     width: 100%;
     max-width: 100%;
     margin: auto;
